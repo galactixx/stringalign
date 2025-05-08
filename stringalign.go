@@ -143,7 +143,7 @@ func justify(line string, spaces int, meta stringwrap.WrappedString) string {
 // to the mode.
 func alignString(str string, limit int, align string) (string, error) {
 	stringAligner := alignFactory(align)
-	strToAlign, metadata, err := stringwrap.StringWrap(str, limit, 4)
+	strToAlign, metadata, err := stringwrap.StringWrap(str, limit, 4, true)
 	metaLines := metadata.WrappedLines
 
 	var alignedLines []string

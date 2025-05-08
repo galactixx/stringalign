@@ -4,7 +4,7 @@ go 1.21.0
 
 require (
 	github.com/galactixx/ansiwalker v1.0.0
-	github.com/galactixx/stringwrap v1.0.2
+	github.com/galactixx/stringwrap v1.0.3
 	github.com/mattn/go-runewidth v0.0.16
 	github.com/stretchr/testify v1.10.0
 )

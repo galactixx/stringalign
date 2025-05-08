@@ -29,6 +29,12 @@ func TestStringAlign(t *testing.T) {
 			aligner:       LeftAlign,
 		},
 		{
+			input:         "Hello, 🌍!\nThis is a long line that will be wrapped and aligned.",
+			limit:         30,
+			alignedString: "Hello, 🌍!                    \nThis is a long line that will \nbe wrapped and aligned.       ",
+			aligner:       LeftAlign,
+		},
+		{
 			input:         "hello",
 			limit:         10,
 			alignedString: "     hello",
@@ -69,6 +75,7 @@ func TestStringAlign(t *testing.T) {
 	for idx, tt := range tests {
 		t.Run(fmt.Sprintf("Aligned String Test %d", idx+1), func(t *testing.T) {
 			alignedString, _ := tt.aligner(tt.input, tt.limit)
+			fmt.Println(alignedString)
 			assert.Equal(t, tt.alignedString, alignedString)
 		})
 	}

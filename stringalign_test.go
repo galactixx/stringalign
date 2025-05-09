@@ -11,7 +11,7 @@ type stringAlignTestCase struct {
 	input         string
 	limit         int
 	alignedString string
-	aligner       func(str string, limit int) (string, error)
+	aligner       func(str string, limit int, tabSize int) (string, error)
 }
 
 func TestStringAlign(t *testing.T) {
@@ -92,7 +92,7 @@ func TestStringAlign(t *testing.T) {
 
 	for idx, tt := range tests {
 		t.Run(fmt.Sprintf("Aligned String Test %d", idx+1), func(t *testing.T) {
-			alignedString, _ := tt.aligner(tt.input, tt.limit)
+			alignedString, _ := tt.aligner(tt.input, tt.limit, 4)
 			fmt.Println(alignedString)
 			assert.Equal(t, tt.alignedString, alignedString)
 		})

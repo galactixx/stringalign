@@ -4,7 +4,6 @@ import (
 	"log"
 	"slices"
 	"strings"
-	"unicode"
 
 	"github.com/galactixx/ansiwalker"
 	"github.com/galactixx/stringwrap"
@@ -141,46 +140,41 @@ func justify(line string, spaces int, meta stringwrap.WrappedString) string {
 
 // alignString wraps and then aligns each line of the input text according
 // to the mode.
-func alignString(str string, limit int, align string) (string, error) {
+func alignString(str string, limit int, tabSize int, align string) (string, error) {
 	stringAligner := alignFactory(align)
-	strToAlign, metadata, err := stringwrap.StringWrap(str, limit, 4, true)
+	strToAlign, metadata, err := stringwrap.StringWrap(str, limit, tabSize, true)
 	metaLines := metadata.WrappedLines
 
 	var alignedLines []string
 	for idx, line := range strings.Split(strToAlign, "\n") {
-		// right trim each line to ensure that there is no trailing
-		// whitespace, since this is important to ensure that all text
-		// is appropriately aligned.
-		trimLine := strings.TrimRightFunc(line, unicode.IsSpace)
-
 		// calculate the width after trimming in order to determine the
 		// number of spaces from limit
-		trimWidth := runewidth.StringWidth(trimLine)
+		trimWidth := runewidth.StringWidth(line)
 		numSpaces := limit - trimWidth
 
 		// call string aligner function and add to lines slice
-		alignedLine := stringAligner(trimLine, numSpaces, metaLines[idx])
+		alignedLine := stringAligner(line, numSpaces, metaLines[idx])
 		alignedLines = append(alignedLines, alignedLine)
 	}
 	return strings.Join(alignedLines, "\n"), err
 }
 
 // LeftAlign wraps and left-aligns the input text within the given limit.
-func LeftAlign(str string, limit int) (string, error) {
-	return alignString(str, limit, "left")
+func LeftAlign(str string, limit int, tabsize int) (string, error) {
+	return alignString(str, limit, tabsize, "left")
 }
 
 // RightAlign wraps and right-aligns the input text within the given limit.
-func RightAlign(str string, limit int) (string, error) {
-	return alignString(str, limit, "right")
+func RightAlign(str string, limit int, tabsize int) (string, error) {
+	return alignString(str, limit, tabsize, "right")
 }
 
 // CenterAlign wraps and center-aligns the input text within the given limit.
-func CenterAlign(str string, limit int) (string, error) {
-	return alignString(str, limit, "center")
+func CenterAlign(str string, limit int, tabsize int) (string, error) {
+	return alignString(str, limit, tabsize, "center")
 }
 
 // Justify wraps and justifies the input text within the given limit.
-func Justify(str string, limit int) (string, error) {
-	return alignString(str, limit, "justify")
+func Justify(str string, limit int, tabsize int) (string, error) {
+	return alignString(str, limit, tabsize, "justify")
 }

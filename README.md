@@ -29,14 +29,14 @@ text := "Hello, 🌍!\nThis is a long line that will be wrapped and aligned."
 width := 30
 ```
 
-### Left Align
+### ***Left Align***
 
 ```go
 left, _ := stringalign.LeftAlign(text, width)
 fmt.Println(left)
 ```
 
-#### Output:
+### Output:
 
 ```text
 Hello, 🌍!
@@ -44,14 +44,16 @@ This is a long line that will
 be wrapped and aligned.
 ```
 
-### Right Align
+---
+
+### ***Right Align***
 
 ```go
 right, _ := stringalign.RightAlign(text, width)
 fmt.Println(right)
 ```
 
-#### Output:
+### Output:
 
 ```text
                     Hello, 🌍!
@@ -59,14 +61,16 @@ fmt.Println(right)
        be wrapped and aligned.
 ```
 
-### Center Align
+---
+
+### ***Center Align***
 
 ```go
 center, _ := stringalign.CenterAlign(text, width)
 fmt.Println(center)
 ```
 
-#### Output:
+### Output:
 
 ```text
           Hello, 🌍!
@@ -74,14 +78,16 @@ This is a long line that will
    be wrapped and aligned.
 ```
 
-### Justify
+---
+
+### ***Justify***
 
 ```go
 justified, _ := stringalign.Justify(text, width)
 fmt.Println(justified)
 ```
 
-#### Output:
+### Output:
 
 ```text
 Hello, 🌍!
@@ -92,14 +98,15 @@ be wrapped and aligned.
 ## 🔍 **API**
 
 ```go
-func LeftAlign(str string, limit int) (string, error)
-func RightAlign(str string, limit int) (string, error)
-func CenterAlign(str string, limit int) (string, error)
-func Justify(str string, limit int) (string, error)
+func LeftAlign(str string, limit int, tabSize int) (string, error)
+func RightAlign(str string, limit int, tabSize int) (string, error)
+func CenterAlign(str string, limit int, tabSize int) (string, error)
+func Justify(str string, limit int, tabSize int) (string, error)
 ```
 
 * **str**: input multi‑line text (may include ANSI escapes).
 * **limit**: maximum visible width per line.
+* **tabSize**: number of spaces to replace tabs when aligning.
 * **returns**: aligned text with `\n`‑separated lines, or an error on wrap failure.
 
 ## 🤝 **License**

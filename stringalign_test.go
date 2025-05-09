@@ -47,6 +47,12 @@ func TestStringAlign(t *testing.T) {
 			aligner:       RightAlign,
 		},
 		{
+			input:         "managing concurrent workers effectively in go routines",
+			limit:         20,
+			alignedString: " managing concurrent\n workers effectively\n      in go routines",
+			aligner:       RightAlign,
+		},
+		{
 			input:         "hello",
 			limit:         11,
 			alignedString: "   hello   ",
@@ -59,15 +65,27 @@ func TestStringAlign(t *testing.T) {
 			aligner:       CenterAlign,
 		},
 		{
+			input:         "graceful shutdown and error propagation",
+			limit:         24,
+			alignedString: " graceful shutdown and  \n   error propagation    ",
+			aligner:       CenterAlign,
+		},
+		{
+			input:         "hello",
+			limit:         15,
+			alignedString: "hello",
+			aligner:       Justify,
+		},
+		{
 			input:         "The quick brown fox jumps over the lazy dog",
 			limit:         12,
 			alignedString: "The    quick\nbrown    fox\njumps   over\nthe lazy dog",
 			aligner:       Justify,
 		},
 		{
-			input:         "hello",
-			limit:         15,
-			alignedString: "hello",
+			input:         "Implement robust logging and monitoring",
+			limit:         20,
+			alignedString: "Implement     robust\nlogging          and\nmonitoring",
 			aligner:       Justify,
 		},
 	}
